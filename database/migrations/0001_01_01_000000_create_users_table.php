@@ -15,6 +15,28 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->date('tgl_lahir');
+            $table->enum('title_pasien', ['nn', 'tn']);
+            $table->enum('status_kawin', ['belum', 'sudah']);
+            $table->string('tempat_lahir');
+            $table->enum('jenis_kelamin', ['laki', 'perempuan']);
+            $table->string('alamat');
+            $table->string('provinsi');
+            $table->string('kabupaten');
+            $table->string('kecamatan');
+            $table->string('kelurahan');
+            $table->string('foto_ktp');
+            $table->string('no_ktp')->unique();
+            $table->string('pekerjaan');
+            $table->string('pendidikan');
+            $table->string('agama');
+            $table->string('no_telepon')->unique();
+            $table->enum('pelayanan', ['sudah', 'belum']);
+            $table->string('nama_keluarga');
+            $table->string('no_telepon_keluarga')->unique();
+            $table->string('alamat_keluarga');
+            $table->string('hubungan_keluarga');
+
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();
