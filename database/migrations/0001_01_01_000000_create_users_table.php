@@ -36,9 +36,9 @@ return new class extends Migration
             $table->string('no_telepon_keluarga')->unique();
             $table->string('alamat_keluarga');
             $table->string('hubungan_keluarga');
+            $table->string('password');
 
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
             $table->rememberToken();
             $table->timestamps();
         });
