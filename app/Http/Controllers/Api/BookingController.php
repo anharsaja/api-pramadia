@@ -13,7 +13,7 @@ class BookingController extends Controller
     // Get all bookings
     public function index()
     {
-        $bookings = Booking::all();
+        $bookings = Booking::where('user_id', Auth::user()->id)->get();
         return response()->json($bookings);
     }
 

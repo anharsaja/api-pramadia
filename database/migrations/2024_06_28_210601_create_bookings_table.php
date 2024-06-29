@@ -22,6 +22,7 @@ return new class extends Migration
             $table->timestamp('end_time');
             $table->string('biaya_layanan');
             $table->string('biaya_admin');
+            $table->enum('status',['pending', 'done', 'cancel'])->default('pending');
             $table->timestamps();
         });
     }
