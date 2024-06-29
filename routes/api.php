@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AnggotaKeluargaController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
@@ -21,4 +22,14 @@ Route::middleware(['auth:sanctum'])->group(function () {
     Route::get('bookings/{id}', [BookingController::class, 'show']);
     Route::put('bookings/{id}', [BookingController::class, 'update']);
     Route::delete('bookings/{id}', [BookingController::class, 'destroy']);
-})->middleware('auth:sanctum');
+
+    
+    Route::get('anggota', [AnggotaKeluargaController::class, 'index']);
+    Route::post('anggota', [AnggotaKeluargaController::class, 'store']);
+    Route::get('anggota/{id}', [AnggotaKeluargaController::class, 'show']);
+    Route::put('anggota/{id}', [AnggotaKeluargaController::class, 'update']);
+    Route::delete('anggota/{id}', [AnggotaKeluargaController::class, 'destroy']);
+});    
+
+
+
