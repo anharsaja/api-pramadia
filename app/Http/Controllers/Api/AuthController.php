@@ -63,7 +63,12 @@ class AuthController extends Controller
         if (Auth::attempt($data)) {
             $user = Auth::user();
             $token = $user->createToken('LaravelAuthApp')->plainTextToken;
-            return response()->json(['token' => $token], 200);
+            return response()->json([
+                'success' => true,
+                'user' => $user,
+                'access_token' => $token,
+                'message' => 'Login successful'
+            ], 200);
         } else {
             return response()->json(['error' => 'Unauthorized'], 401);
         }
@@ -71,9 +76,12 @@ class AuthController extends Controller
     // Logout
     public function logout(Request $request)
     {
-        // Get the token that the user wants to revoke
-        $request->user()->currentAccessToken()->delete();
-
-        return response()->json(['message' => 'Successfully logged out']);
+        try {
+            // Get the token that the user wants to revoke
+            $request->user()->currentAccessToken()->delete();
+            return response()->json(['message' => 'Successfully logged out'], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['error' => 'user not login'], 401);
+        }
     }
 }

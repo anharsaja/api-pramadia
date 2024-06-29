@@ -74,8 +74,12 @@ class BookingController extends Controller
     // Delete a booking
     public function destroy($id)
     {
-        $booking = Booking::findOrFail($id);
-        $booking->delete();
-        return response()->json(null, 204);
+        try {
+            $booking = Booking::findOrFail($id);
+            $booking->delete();
+            return response()->json(['message' => 'delete success'], 200);
+        } catch (\Throwable $th) {
+            return response()->json(['error' => 'data not defined'], 404);
+        }
     }
 }
